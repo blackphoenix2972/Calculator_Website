@@ -4,7 +4,7 @@ import './App.css';
 const Calculator = () => {
   const [input, setInput] = useState('');
   const [result, setResult] = useState('');
-
+  const maxLength = 15;
   const handleClick = (value) => {
     if (value === '=') {
       try {
@@ -16,7 +16,12 @@ const Calculator = () => {
       setInput('');
       setResult('');
     } else {
-      setInput((prevInput) => prevInput + value);
+      if (input.length < maxLength) {
+        setInput((prevInput) => prevInput + value);
+      } else {
+        // Optionally, you can provide some feedback to the user about the length limit
+        console.log('Input length limit reached');
+      }
     }
   };
 
